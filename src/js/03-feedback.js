@@ -11,23 +11,23 @@ const STORAGE_KEY = "feedback-form-state";
 
 let formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
-auditLocalStorage();
+checkLocalStorage();
 
-function dataFormEl(evt) {
-  formData[evt.target.name] = evt.target.value;
+function dataFormEl(e) {
+  formData[e.target.name] = e.target.value;
   //   console.log(formData);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
-function onFormSubmit(evt) {
-  evt.preventDefault();
-  console.log(formData);
-  evt.currentTarget.reset();
+function onFormSubmit(e) {
+  e.preventDefault();
+  // console.log(formData);
+  e.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
   formData = {};
 }
 
-function auditLocalStorage() {
+function checkLocalStorage() {
   const savedFormData = localStorage.getItem(STORAGE_KEY);
   const parsedFormData = JSON.parse(savedFormData);
 
